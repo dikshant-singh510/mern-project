@@ -4,6 +4,7 @@ const app = express();
 const port = process.env.port || 3000;
 const path = require("path");
 const bcrypt = require("bcryptjs");
+const cookieParser = require("cookie-parser");
 
 // REQUIRING DATABASE FILE TO CONNECT DATABASE
 require("./db/connection");
@@ -16,12 +17,20 @@ const templatesPath = path.join(__dirname, "../templates/views");
 // using css,assets... from public folder
 app.use(express.static(staticPath));
 app.use(express.json());
+app.use(cookieParser);
 app.use(express.urlencoded({ extended: false }));
 //  setting view engineas hbs
 app.set("view engine", "hbs");
 app.set("views", templatesPath);
 
-console.log(process.env.SECRET_KEY);
+// console.log(process.env.SECRET_KEY);
+
+// app.get("/user", (req, res) => {
+//   // rendering hbs file named "index.hbs"
+//   res.render("user",{
+//     cookie:req.cookies.jwt
+//   });
+// });
 
 app.get("/", (req, res) => {
   // rendering hbs file named "index.hbs"
@@ -53,7 +62,13 @@ app.post("/register", async (req, res) => {
       // console.log(`success part ${registerUser}`);
 
       const token = await registerUser.generateAuthToken();
-      console.log(`success part ${token}`);
+      // console.log(`success part ${token}`);
+
+      res.cookie("jwt", token, {
+        expires: new Date(Date.now() + 5000),
+        httpOnly: true,
+      });
+      // console.log(cookie);
 
       const saveData = await registerUser.save();
       res.status(201).render("index");
@@ -76,7 +91,14 @@ app.post("/login", async (req, res) => {
     const isMatch = await bcrypt.compare(password, useremail.password);
     // Muddleware
     const token = await useremail.generateAuthToken();
-    console.log(`success part ${token}`);
+    // console.log(`success part ${token}`);
+
+    res.cookie("jwt", token, {
+      expires: new Date(Date.now() + 6000),
+      httpOnly: true,
+    });
+
+    // console.log(`this is the cookie ${req.cookies.jwt}`);
 
     if (isMatch) {
       res.status(201).render("index");
