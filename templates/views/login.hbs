@@ -1,0 +1,132 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form MERN Project</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="font-sans bg-white text-slate-700">
+  <div class="w-full min-h-screen bg-white grid place-items-center">
+    <!-- 
+    <!-- Main div starts -->
+    <div
+      class="bg-white w-11/12 sm:w-[640px] md:w-[778px] lg:w-[1024px] rounded-md grid  grid-rows-none md:grid-rows-none md:grid-cols-5 shadow-2xl shadow-violet-300 my-4 box-border overflow-hidden">
+      <!-- sm:m-0 -->
+
+      <!-- show box starts -->
+      <div
+        class="bg-purple-700 row-start-1 row-end-2 md:row-start-1 md:row-end-4 md:col-start-1 md:col-end-3 relative overflow-hidden h-32 sm:h-36 md:h-auto">
+        <div
+          class="w-16 h-16 sm:w-48 sm:h-48 bg-gradient-to-bl from-[#f8ceec] rounded-full opacity-40 absolute sm:-top-16 ">
+        </div>
+        <div
+          class="w-20 h-20 sm:w-48 sm:h-48 bg-gradient-to-tr from-[#f8ceec] md:from-[#b908ff] md:to-[#ff8489] rounded-full absolute top-3/4 sm:top-1/3 left-1/3 md:-left-1/2 opacity-80 ">
+        </div>
+        <div
+          class="w-24 h-24 bg-gradient-to-tr from-[#ff8489]  rounded-full absolute bottom-10 right-0 sm:right-5 opacity-40 ">
+        </div>
+        <div class="text-white text-lg tracking-widest w-24 h-24 absolute bottom-3 left-6 md:left-4 ">
+          Hey Welcome Back
+        </div>
+
+      </div>
+      <!-- show box ends -->
+
+
+      <!-- form div starts -->
+      <div
+        class="row-start-2 row-end-4 md:row-start-1 md:row-end-3 md:col-start-3 md:col-end-6 grid grid-rows-1 px-5 gap-1 w-full bg-white box-border">
+
+        <div class=" row-start-1 row-end-auto font-black text-lg align-text-top h-10 mt-4 md:mt-8 mb-3">
+          Login
+          <div class="w-10 h-1 mt-1 bg-gradient-to-l from-purple-400 to-purple-700  rounded-xl"></div>
+        </div>
+
+
+
+        <form action="/login" method="post"
+          class=" row-start-2 row-end-6 grid grid-rows-3 text-slate-400 md:mb-10 box-border">
+
+
+          <div class=" flex  items-center sm:justify-between flex-col sm:flex-row">
+
+            <div class="relative z-0 group w-full mb-4 sm:w-[48.5%] h-8">
+              <input type="text" name="firstname" id="firstname"
+                class="block absolute bottom-0 pb-0.5 px-0 h-7 leading-none w-full text-sm font-medium text-slate-700 bg-transparent border-0 border-b-2 border-slate-300  focus:outline-none focus:ring-0 focus:border-purple-400 peer align-text-top"
+                placeholder=" " required />
+              <label for="firstname"
+                class=" font-medium absolute text-sm text-slate-400  duration-300 transform -translate-y-6 scale-75 top-2.5 left-0 -z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">First
+                name</label>
+            </div>
+
+
+            <div class="relative z-0 group w-full mb-4 sm:w-[48.5%] h-8">
+              <input type="text" name="lastname" id="lastname"
+                class="block absolute bottom-0 pb-0.5 px-0 h-7 leading-none w-full text-sm font-medium text-slate-700 bg-transparent border-0 border-b-2 border-slate-300  focus:outline-none focus:ring-0 focus:border-purple-400 peer align-text-top"
+                placeholder=" " required />
+              <label for="lastname"
+                class=" font-medium absolute text-sm text-slate-400  duration-300 transform -translate-y-6 scale-75 top-2.5 left-0 -z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Last
+                name</label>
+            </div>
+          </div>
+
+
+
+          <div class=" flex  items-center sm:justify-between flex-col sm:flex-row">
+
+
+            <div class="relative z-0 group w-full mb-4 sm:w-[48.5%] h-8">
+              <input type="email" name="email" id="email"
+                class="block absolute bottom-0 pb-0.5 px-0 h-7 leading-none w-full text-sm font-medium text-slate-700 bg-transparent border-0 border-b-2 border-slate-300  focus:outline-none focus:ring-0 focus:border-purple-400 peer align-text-top"
+                placeholder=" " required />
+              <label for="email"
+                class=" font-medium absolute text-sm text-slate-400  duration-300 transform -translate-y-6 scale-75 top-2.5 left-0 -z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email
+                address</label>
+            </div>
+
+            <div class="relative z-0 group w-full mb-4 sm:w-[48.5%] h-8">
+              <input type="password" name="password" id="password"
+                class="block absolute bottom-0 pb-0.5 px-0 h-7 leading-none w-full text-sm font-medium text-slate-700 bg-transparent border-0 border-b-2 border-slate-300  focus:outline-none focus:ring-0 focus:border-purple-400 peer align-text-top"
+                placeholder=" " required />
+              <label for="password"
+                class=" font-medium absolute text-sm text-slate-400  duration-300 transform -translate-y-6 scale-75 top-2.5 left-0 -z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password
+
+              </label>
+            </div>
+          </div>
+
+
+
+
+
+
+
+          <div class=" flex  items-center justify-around flex-col ">
+            <input type="submit" value="register"
+              class="w-4/5 sm:w-3/5 h-7 bg-gradient-to-br from-purple-400 to-purple-700 rounded-3xl text-white text-center font-normal tracking-wider my-2 py-auto">
+            <div class="text-center text-xs my-2 py-auto">Don't have an account?<a href="/register"
+              class="font-medium text-purple-700">
+              Sign
+              up</a></div>
+          </div>
+
+
+      </div>
+      </form>
+
+    </div>
+    <!-- form div ends -->
+
+  </div>
+
+  <!-- Main div ends -->
+
+  </div>
+</body>
+
+</html>
+
+<!--  -->
