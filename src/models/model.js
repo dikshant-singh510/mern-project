@@ -57,6 +57,7 @@ userSchema.methods.generateAuthToken = async function () {
     this.tokens = this.tokens.concat({ token: token });
     await this.save();
     return token;
+    // console.log(SECRET_KEY);
     // console.log({ _id: this._id.toString() });
   } catch (err) {
     console.log(err);

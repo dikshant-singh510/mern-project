@@ -5,6 +5,7 @@ const port = process.env.port || 3000;
 const path = require("path");
 const bcrypt = require("bcryptjs");
 const cookieParser = require("cookie-parser");
+const auth = require("./middleware/auth");
 
 // REQUIRING DATABASE FILE TO CONNECT DATABASE
 require("./db/connection");
@@ -17,7 +18,7 @@ const templatesPath = path.join(__dirname, "../templates/views");
 // using css,assets... from public folder
 app.use(express.static(staticPath));
 app.use(express.json());
-app.use(cookieParser);
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 //  setting view engineas hbs
 app.set("view engine", "hbs");
@@ -25,12 +26,34 @@ app.set("views", templatesPath);
 
 // console.log(process.env.SECRET_KEY);
 
-// app.get("/user", (req, res) => {
-//   // rendering hbs file named "index.hbs"
-//   res.render("user",{
-//     cookie:req.cookies.jwt
-//   });
-// });
+app.get("/user", auth, (req, res) => {
+  // rendering hbs file named "index.hbs"
+  // console.log(`this is the cookie ${req.cookies.jwt}`);
+
+  res.render("user", {
+    cookieName: req.cookies.jwt,
+  });
+});
+
+app.get("/logout", auth, async (req, res) => {
+  try {
+    // logout from current device
+
+    req.user.tokens = req.user.tokens.filter((currentElement)=>{
+      return currentElement.token !== req.token
+    })
+
+    // logout for all devices
+    // req.user.tokens = [];
+    //  console.log(req.user.tokens);
+    res.clearCookie("jwt");
+    console.log("successfully logout");
+    await req.user.save();
+    res.render("login");
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
 
 app.get("/", (req, res) => {
   // rendering hbs file named "index.hbs"
@@ -65,7 +88,7 @@ app.post("/register", async (req, res) => {
       // console.log(`success part ${token}`);
 
       res.cookie("jwt", token, {
-        expires: new Date(Date.now() + 5000),
+        expires: new Date(Date.now() + 600000),
         httpOnly: true,
       });
       // console.log(cookie);
@@ -94,14 +117,14 @@ app.post("/login", async (req, res) => {
     // console.log(`success part ${token}`);
 
     res.cookie("jwt", token, {
-      expires: new Date(Date.now() + 6000),
+      expires: new Date(Date.now() + 600000),
       httpOnly: true,
     });
 
     // console.log(`this is the cookie ${req.cookies.jwt}`);
 
     if (isMatch) {
-      res.status(201).render("index");
+      res.status(201).render("user");
     } else {
       res.send("Invalid login details!!!");
     }
